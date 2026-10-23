@@ -139,6 +139,40 @@ h2{font-weight:300;font-size:clamp(28px,3.4vw,44px);line-height:1.06;letter-spac
 @media (max-width:820px){.end{grid-template-columns:1fr}}
 footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:grid;gap:4px}
 
+
+/* телефон */
+@media (max-width:700px){
+  .wrap{gap:56px;padding-block:12px 48px}
+  h2{font-size:28px}
+  .cover{padding:24px 20px;gap:28px;border-radius:22px}
+  .cover .top{flex-direction:column;align-items:flex-start;gap:6px}
+  .cover h1{font-size:36px}
+  .cover .lead{font-size:15px}
+  .site-link{width:100%;justify-content:space-between}
+  .pr{padding:18px 20px;gap:6px}
+  .pr b{font-size:30px}
+  .compare{padding:20px}
+  .shot picture,.shot img{display:block;width:100%}
+  .feat,.feat.rev{gap:16px}
+  .feat-copy{padding:0 4px}
+  .feat-copy h3{font-size:24px}
+  .duo{gap:16px}
+  .mini .feat-copy{padding:18px 20px 22px}
+  .phone{padding:20px;gap:24px}
+  .tbl table{min-width:0}
+  .tbl thead{display:none}
+  .tbl tr{display:block;padding:14px 20px;border-bottom:1px solid var(--line)}
+  .tbl tr:last-child{border-bottom:0}
+  .tbl td{display:block;padding:0;border:0}
+  .tbl td:first-child{font-size:13px;margin-bottom:4px}
+  .tbl td:first-child::before{content:'Ищут: '}
+  .tbl td:last-child::before{content:'→ ';color:var(--orange)}
+  .ads{padding:22px 20px}
+  .step{padding:20px}
+  .start{padding:24px 20px}
+  .end{padding:28px 20px;border-radius:22px}
+}
+
 /* печать и PDF: альбомные страницы, блоки не разрываются */
 @page{size:1400px 990px;margin:36px 48px}
 @media print{
@@ -204,7 +238,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
   <div class="sec-head"><span class="eyebrow">Концепт нового сайта</span><h2>Что меняем на главной и зачем</h2><p>Главную спроектировали под тех, кто реально покупает у ДомХит: переезжающих с материка, инвесторов и местные семьи.</p></div>
 
   <div class="feat">
-    <div class="shot"><img src="kp-img/01-hero.jpg" alt="Новый первый экран: видео моря, заголовок и поиск" loading="lazy"></div>
+    <div class="shot"><picture><source media="(max-width:700px)" srcset="kp-img/m01-hero.jpg"><img src="kp-img/01-hero.jpg" alt="Новый первый экран: видео моря, заголовок и поиск" loading="lazy"></picture></div>
     <div class="feat-copy">
       <span class="tag">Первый экран</span>
       <h3>Продаёт жизнь у моря и сразу ведёт к поиску</h3>
@@ -218,7 +252,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
   </div>
 
   <div class="feat rev">
-    <div class="shot"><img src="kp-img/02-lead.jpg" alt="Короткая форма заявки: имя, телефон и способ связи" loading="lazy"></div>
+    <div class="shot"><picture><source media="(max-width:700px)" srcset="kp-img/m02-lead.jpg"><img src="kp-img/02-lead.jpg" alt="Короткая форма заявки: имя, телефон и способ связи" loading="lazy"></picture></div>
     <div class="feat-copy">
       <span class="tag">Короткая заявка</span>
       <h3>Для тех, кто готов говорить сразу</h3>
@@ -232,7 +266,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
   </div>
 
   <div class="wide">
-    <div class="shot"><img src="kp-img/02-quiz.jpg" alt="Квиз подбора на странице: шаг выбора города" loading="lazy"></div>
+    <div class="shot"><picture><source media="(max-width:700px)" srcset="kp-img/m02-quiz.jpg"><img src="kp-img/02-quiz.jpg" alt="Квиз подбора на странице: шаг выбора города" loading="lazy"></picture></div>
     <div class="feat-copy wide-copy">
       <div><span class="tag">Квиз подбора</span><h3>Для тех, кто ещё не решил, что выбрать</h3></div>
       <ul>
@@ -244,7 +278,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
   </div>
 
   <div class="feat">
-    <div class="shot"><img src="kp-img/03-promo.jpg" alt="Баннер спецпредложения про материнский капитал" loading="lazy"></div>
+    <div class="shot"><picture><source media="(max-width:700px)" srcset="kp-img/m03-promo.jpg"><img src="kp-img/03-promo.jpg" alt="Баннер спецпредложения про материнский капитал" loading="lazy"></picture></div>
     <div class="feat-copy">
       <span class="tag">Спецпредложение</span>
       <h3>Место для главной новости агентства</h3>
@@ -258,7 +292,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
   </div>
 
   <div class="feat rev">
-    <div class="shot"><img src="kp-img/04-objects.jpg" alt="Новые карточки объектов с ценой и местом" loading="lazy"></div>
+    <div class="shot"><picture><source media="(max-width:700px)" srcset="kp-img/m04-objects.jpg"><img src="kp-img/04-objects.jpg" alt="Новые карточки объектов с ценой и местом" loading="lazy"></picture></div>
     <div class="feat-copy">
       <span class="tag">Карточки объектов</span>
       <h3>Понятно за 5 секунд: что, где и за сколько</h3>
@@ -273,7 +307,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
 
   <div class="duo">
     <div class="mini">
-      <div class="shot"><img src="kp-img/06-remote.jpg" alt="Блок для покупателей из других регионов" loading="lazy"></div>
+      <div class="shot"><picture><source media="(max-width:700px)" srcset="kp-img/m06-remote.jpg"><img src="kp-img/06-remote.jpg" alt="Блок для покупателей из других регионов" loading="lazy"></picture></div>
       <div class="feat-copy">
         <span class="tag">Покупка из другого города</span>
         <h3>Отдельный путь для главного сегмента</h3>
@@ -281,7 +315,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
       </div>
     </div>
     <div class="mini">
-      <div class="shot"><img src="kp-img/05-mortgage.jpg" alt="Ипотечный калькулятор" loading="lazy"></div>
+      <div class="shot"><picture><source media="(max-width:700px)" srcset="kp-img/m05-mortgage.jpg"><img src="kp-img/05-mortgage.jpg" alt="Ипотечный калькулятор" loading="lazy"></picture></div>
       <div class="feat-copy">
         <span class="tag">Ипотека</span>
         <h3>Платёж в месяц за 10 секунд</h3>
@@ -291,7 +325,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
   </div>
 
   <div class="feat">
-    <div class="shot"><img src="kp-img/07-reviews.jpg" alt="Отзывы клиентов" loading="lazy"></div>
+    <div class="shot"><picture><source media="(max-width:700px)" srcset="kp-img/m07-reviews.jpg"><img src="kp-img/07-reviews.jpg" alt="Отзывы клиентов" loading="lazy"></picture></div>
     <div class="feat-copy">
       <span class="tag">Доверие</span>
       <h3>Реальные отзывы на главной</h3>
