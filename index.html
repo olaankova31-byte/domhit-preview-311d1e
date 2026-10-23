@@ -69,7 +69,7 @@ p{margin:0}
 .nav{display:flex;gap:4px;flex:1}
 .nav a{padding:10px 14px;border-radius:999px;font-weight:500;font-size:15px;transition:background .15s}
 .nav a:hover{background:var(--surface)}
-.actions{display:flex;align-items:center;gap:10px}
+.actions{display:flex;align-items:center;gap:10px;margin-left:auto}
 .icon-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);cursor:pointer;position:relative}
 .icon-btn svg{width:20px;height:20px}
 .icon-btn .dot{position:absolute;top:6px;right:6px;min-width:16px;height:16px;border-radius:8px;background:var(--orange);color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center;padding:0 4px}
@@ -82,6 +82,22 @@ p{margin:0}
 .btn-sm{height:44px;padding:0 20px;font-size:15px}
 .btn svg{width:18px;height:18px}
 .burger{display:none}
+/* мобильное меню */
+.mnav{position:fixed;inset:0;z-index:50;background:rgba(20,24,32,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .2s}
+.mnav.open{opacity:1;pointer-events:auto}
+.mnav-panel{position:absolute;top:0;right:0;bottom:0;width:min(380px,88vw);background:var(--surface);padding:calc(18px + env(safe-area-inset-top,0px)) 22px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:22px;overflow-y:auto;transform:translateX(100%);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.mnav.open .mnav-panel{transform:none}
+.mnav-top{display:flex;justify-content:space-between;align-items:center}
+.mnav-links{display:grid}
+.mnav-links a{display:flex;justify-content:space-between;align-items:center;padding:14px 2px;border-bottom:1px solid var(--line);font-size:19px;font-weight:400;letter-spacing:-.01em}
+.mnav-links a svg{width:18px;height:18px;color:var(--muted)}
+.mnav-contacts{display:grid;gap:10px;margin-top:auto}
+.mnav-contacts .tel{font-size:20px;font-weight:500}
+.mnav-contacts .muted{font-size:13px;color:var(--muted)}
+.mnav-msgs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mnav-msgs a{height:46px;border-radius:14px;background:var(--bg);display:flex;align-items:center;justify-content:center;gap:8px;font-weight:500;font-size:15px}
+.mnav-msgs svg{width:17px;height:17px}
+.mnav .btn{width:100%}
 
 /* ---------- герой: видео на всю ширину ---------- */
 :root{--overlap:64px}
@@ -631,7 +647,7 @@ body{font-size:15px}
     <div class="actions">
       <a class="icon-btn fav-h" href="#" aria-label="Избранное"><svg><use href="#i-heart"/></svg><span class="dot" id="favCount" hidden>0</span></a>
       <a class="btn btn-primary btn-sm" href="#lead" data-lead>Подобрать объект</a>
-      <button class="icon-btn burger" aria-label="Открыть меню"><svg><use href="#i-menu"/></svg></button>
+      <button class="icon-btn burger" type="button" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav"><svg><use href="#i-menu"/></svg></button>
     </div>
   </div>
 </header>
@@ -1105,6 +1121,31 @@ body{font-size:15px}
 </nav>
 
 
+<!-- МОБИЛЬНОЕ МЕНЮ -->
+<div class="mnav" id="mnav" hidden>
+  <nav class="mnav-panel" aria-label="Меню">
+    <div class="mnav-top">
+      <a class="logo" href="#"><svg class="mark" viewBox="0 0 94.7 94.2"><path fill="#1E2027" fill-rule="evenodd" d="M0,27.7v66.4h41.3c25.3,0,46-20.7,46-46V36.5L76.1,47v1.1C76.1,67.3,60.5,83,41.3,83H11.2V33.9l32.6-20.6l18.6,11.8l8.4-7.9L43.8,0L0,27.7z"/><polygon fill="#DD7F43" points="94.7,20.8 86,11.7 44.3,50.8 34.5,40.3 25.3,48.9 43.8,68.6"/></svg><img class="word" src="img/logo_text.svg" alt="ДомХит"></a>
+      <button class="icon-btn" type="button" data-mclose aria-label="Закрыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="mnav-links">
+      <a href="#objects">Купить<svg><use href="#i-right"/></svg></a>
+      <a href="#zhk">Новостройки<svg><use href="#i-right"/></svg></a>
+      <a href="#cats">Дома и участки<svg><use href="#i-right"/></svg></a>
+      <a href="#">Аренда<svg><use href="#i-right"/></svg></a>
+      <a href="#mortgage">Ипотека<svg><use href="#i-right"/></svg></a>
+      <a href="#sell">Продать<svg><use href="#i-right"/></svg></a>
+      <a href="#offices">О нас и офисы<svg><use href="#i-right"/></svg></a>
+    </div>
+    <div class="mnav-contacts">
+      <a class="tel num" href="#">+7 (978) 527-26-27</a>
+      <span class="muted">Пн–Пт 9:00–20:00 · 5 офисов в Крыму</span>
+      <div class="mnav-msgs"><a href="#"><svg><use href="#i-wa"/></svg>WhatsApp</a><a href="#"><svg><use href="#i-tg"/></svg>Telegram</a></div>
+      <a class="btn btn-primary" href="#lead" data-lead>Подобрать объект</a>
+    </div>
+  </nav>
+</div>
+
 <!-- КОРОТКАЯ ЗАЯВКА -->
 <div class="quiz" id="lead" role="dialog" aria-modal="true" aria-labelledby="leadTitle" hidden>
   <form class="quiz-card lead-card" id="leadForm" novalidate>
@@ -1234,6 +1275,14 @@ body{font-size:15px}
   qForm.addEventListener('submit',e=>{e.preventDefault();show(step<5?step+1:6,true);});
   $('[data-restart]',quiz).addEventListener('click',()=>{$$('.q-tile[aria-pressed="true"],.q-opt[aria-pressed="true"]',quiz).forEach(x=>x.setAttribute('aria-pressed','false'));show(1,true);});
   show(1);
+
+  // мобильное меню
+  const mnav=$('#mnav'), burger=$('#burger');
+  function openMenu(){mnav.hidden=false;requestAnimationFrame(()=>mnav.classList.add('open'));burger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';setTimeout(()=>$('[data-mclose]',mnav).focus(),60);}
+  function closeMenu(back){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow='';setTimeout(()=>{mnav.hidden=true;},250);if(back)burger.focus();}
+  burger.addEventListener('click',openMenu);
+  mnav.addEventListener('click',e=>{if(e.target===mnav||e.target.closest('[data-mclose]'))closeMenu(true);else if(e.target.closest('a'))closeMenu(false);});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!mnav.hidden)closeMenu(true);});
 
   // короткая заявка: кнопки «Подобрать», спецпредложение, видеопоказ, ипотека
   const lead=$('#lead'), lForm=$('#leadForm'), lMain=$('#leadMain'), lDone=$('#leadDone'), lTag=$('#leadTag'), lTitle=$('#leadTitle');
