@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>ДомХит · аудит и концепт сайта</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&display=swap">
+<style>
+/* Стиль нового сайта ДомХит: тёплый серый фон, белые карточки, фирменный оранжевый, лёгкие заголовки Onest.
+   Одна светлая тема намеренно: презентация повторяет вид сайта. */
+:root{
+  --bg:#F3F3F1; --surface:#FFFFFF; --ink:#1E2027; --muted:#6B6F7B; --line:#E3E3DF;
+  --orange:#EC8D30; --orange-deep:#DD7F43; --orange-soft:#FCEBDB; --graphite:#4E5261;
+  --bad:#C2412F;
+  --font:"Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 72px;display:grid;gap:88px}
+.num{font-variant-numeric:tabular-nums}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite)}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--orange)}
+h2{font-weight:300;font-size:clamp(28px,3.4vw,44px);line-height:1.06;letter-spacing:-.03em}
+.sec{display:grid;gap:28px;min-width:0}
+.sec-head{display:grid;gap:12px;max-width:760px}
+.sec-head p{color:var(--muted);font-size:16px}
+
+/* обложка */
+.cover{position:relative;overflow:hidden;border-radius:28px;background:var(--ink);color:#fff;padding:clamp(28px,5vw,64px);display:grid;gap:40px;isolation:isolate}
+.cover::before{content:"";position:absolute;inset:0;z-index:-1;background:url("kp-img/cover.webp") right 30%/cover;opacity:.9}
+.cover::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(30,32,39,.94) 0%,rgba(30,32,39,.78) 45%,rgba(30,32,39,.2) 100%),linear-gradient(0deg,rgba(30,32,39,.75) 0%,rgba(30,32,39,0) 45%)}
+.cover .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.7)}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:500;font-size:15px}
+.brand svg{width:28px;height:28px}
+.cover .eyebrow{color:rgba(255,255,255,.75)}
+.cover h1{font-weight:300;font-size:clamp(36px,5.4vw,72px);line-height:1;letter-spacing:-.035em;max-width:14ch}
+.cover h1 em{font-style:normal;color:var(--orange)}
+.cover .lead{font-size:17px;color:rgba(255,255,255,.8);max-width:36em}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kpi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:20px;display:grid;gap:6px}
+.kpi b{font-weight:300;font-size:clamp(30px,3.2vw,44px);letter-spacing:-.03em;line-height:1}
+.kpi b.bad{color:#FFB37A}
+.kpi span{font-size:14px;color:rgba(255,255,255,.72)}
+@media (max-width:720px){.kpis{grid-template-columns:1fr}}
+
+/* что не работает */
+.problems{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pr{background:var(--surface);border-radius:20px;padding:24px;display:grid;gap:10px;align-content:start}
+.pr b{font-weight:300;font-size:clamp(32px,3vw,42px);letter-spacing:-.035em;line-height:1;color:var(--bad)}
+.pr h3{font-weight:500;font-size:17px;letter-spacing:-.01em}
+.pr p{color:var(--muted);font-size:14px}
+@media (max-width:960px){.problems{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.problems{grid-template-columns:1fr}}
+
+/* сравнение */
+.compare{background:var(--surface);border-radius:20px;padding:24px 28px;display:grid;gap:14px}
+.compare h3{font-weight:500;font-size:16px}
+.bar{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;font-size:14px}
+.bar .track{display:flex;align-items:center;gap:10px;min-width:0}
+.bar i{display:block;height:12px;border-radius:6px;background:#C9CCD2}
+.bar.me i{background:var(--bad)}
+.bar.me span:first-child{font-weight:600}
+.bar em{font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar.me em{color:var(--bad);font-weight:600}
+.axis-note{font-size:12px;color:var(--muted)}
+@media (max-width:560px){.bar{grid-template-columns:1fr}}
+
+/* концепт */
+.feat{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:center}
+.feat.rev{grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}
+.feat.rev .shot{order:2}
+.shot{border-radius:20px;overflow:hidden;background:var(--surface);box-shadow:0 30px 60px -36px rgba(30,32,39,.45)}
+.shot img{width:100%;height:auto}
+.feat-copy{display:grid;gap:16px;align-content:center;padding:8px}
+.feat-copy .tag{display:inline-flex;justify-self:start;background:var(--orange-soft);color:var(--orange-deep);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:500}
+.feat-copy h3{font-weight:300;font-size:clamp(24px,2.4vw,32px);line-height:1.1;letter-spacing:-.03em}
+.feat-copy ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.feat-copy li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15px}
+.feat-copy li::before{content:"";width:22px;height:22px;border-radius:50%;background:var(--orange-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23DD7F43' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/13px no-repeat}
+.feat-copy .fix{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.feat-copy .fix b{color:var(--ink);font-weight:500}
+.wide{display:grid;gap:20px}
+.wide-copy{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:24px;padding:0 8px}
+@media (max-width:900px){.wide-copy{grid-template-columns:1fr}}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.mini{background:var(--surface);border-radius:20px;overflow:hidden;display:grid;align-content:start}
+.mini .shot{border-radius:0;box-shadow:none}
+.mini .feat-copy{padding:22px 24px 26px}
+.phone{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:40px;align-items:center;background:var(--surface);border-radius:20px;padding:28px}
+.phone .shot{border-radius:24px;box-shadow:0 0 0 8px var(--ink),0 30px 60px -30px rgba(30,32,39,.6);margin:8px}
+@media (max-width:900px){.feat,.feat.rev,.duo,.phone{grid-template-columns:1fr}.feat.rev .shot{order:0}.phone .shot{max-width:280px;justify-self:center}}
+
+/* шаги */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.step{background:var(--surface);border-radius:20px;padding:24px;display:grid;gap:12px;align-content:start}
+.step .n{font-size:13px;font-weight:600;color:var(--orange)}
+.step h3{font-weight:400;font-size:20px;letter-spacing:-.015em}
+.step ul{margin:0;padding-left:18px;display:grid;gap:6px;color:var(--muted);font-size:14px}
+.step.main{background:var(--orange);color:#fff}
+.step.main .n{color:#fff;opacity:.8}
+.step.main ul{color:rgba(255,255,255,.88)}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+.start{background:var(--ink);color:#fff;border-radius:24px;padding:28px 32px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
+.start h3{font-weight:300;font-size:clamp(22px,2.2vw,28px);letter-spacing:-.025em}
+.start p{color:rgba(255,255,255,.7);font-size:14px;margin-top:8px}
+.start .chips{display:flex;flex-wrap:wrap;gap:8px}
+.start .chips span{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 14px;font-size:14px}
+@media (max-width:820px){.start{grid-template-columns:1fr}}
+.site-link{justify-self:start;display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--ink);text-decoration:none;border-radius:999px;height:52px;padding:0 8px 0 24px;font-weight:500;font-size:15px}
+.site-link .arr{width:36px;height:36px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:16px}
+footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:grid;gap:4px}
+
+/* печать и PDF: альбомные страницы, блоки не разрываются */
+@page{size:1400px 990px;margin:36px 48px}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:var(--bg)}
+  .wrap{padding:0;gap:48px;max-width:none}
+  .cover{min-height:900px;align-content:center;break-after:page}
+  .sec{break-before:page}
+  .pr,.feat,.wide,.mini,.phone,.step,.start,.compare,.kpi{break-inside:avoid}
+  .shot{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+<!-- ОБЛОЖКА -->
+<header class="cover">
+  <div class="top">
+    <span class="brand"><svg viewBox="0 0 94.7 94.2"><path fill="#fff" fill-rule="evenodd" d="M0,27.7v66.4h41.3c25.3,0,46-20.7,46-46V36.5L76.1,47v1.1C76.1,67.3,60.5,83,41.3,83H11.2V33.9l32.6-20.6l18.6,11.8l8.4-7.9L43.8,0L0,27.7z"/><polygon fill="#EC8D30" points="94.7,20.8 86,11.7 44.3,50.8 34.5,40.3 25.3,48.9 43.8,68.6"/></svg>Предложение для ДомХит</span>
+    <span>Аудит и концепт редизайна · октябрь 2026</span>
+  </div>
+  <span class="eyebrow">domhit.pro</span>
+  <h1>Сайт, который <em>приводит</em> клиентов, а не теряет их</h1>
+  <p class="lead">У ДомХит одна из крупнейших баз в Крыму: почти 4 000 объектов и 5 офисов. Сайт этого не показывает: он медленный, в нём есть технические ошибки, и с телефона до поиска нужно долго листать.</p>
+  <a class="site-link" href="../">Открыть концепт сайта<span class="arr">→</span></a>
+  <div class="kpis">
+    <div class="kpi"><b class="bad num">16,6 с</b><span>появляется главный экран на телефоне. Норма до 2,5 с</span></div>
+    <div class="kpi"><b class="bad num">5 экранов</b><span>нужно пролистать на телефоне до поиска объектов</span></div>
+    <div class="kpi"><b class="num">Топ-3</b><span>агентств Крыма по охвату на Циан. Бизнес сильнее сайта</span></div>
+  </div>
+</header>
+
+<!-- ЧТО НЕ РАБОТАЕТ -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">Что сейчас не работает</span><h2>Шесть проблем, из-за которых сайт теряет заявки</h2></div>
+  <div class="problems">
+    <div class="pr"><b class="num">16 МБ</b><h3>Тяжёлая главная</h3><p>11,7 МБ из них занимает фоновое видео. На мобильном интернете часть людей уходит, не дождавшись.</p></div>
+    <div class="pr"><b>Нет поиска</b><h3>на первом экране телефона</h3><p>Сначала слоган и кнопки услуг, каталог только на 6-м экране. Поиска нет даже в меню.</p></div>
+    <div class="pr"><b>404</b><h3>«Евпатория» в меню ведёт на ошибку</h3><p>Главный город агентства открывается пустой страницей.</p></div>
+    <div class="pr"><b>Код</b><h3>Ошибки показывают внутренности сайта</h3><p>Включён режим отладки: код и путь к файлам на сервере видны всем. Это риск безопасности.</p></div>
+    <div class="pr"><b class="num">3 840</b><h3>устаревших адресов в карте сайта</h3><p>Яндекс тратит время на переадресации, и новые объекты медленнее попадают в поиск.</p></div>
+    <div class="pr"><b>0</b><h3>статей и посадочных страниц</h3><p>По запросам «квартира в Евпатории», «участок ИЖС» первые места у агрегаторов, сайта ДомХит там нет.</p></div>
+  </div>
+  <div class="compare" role="img" aria-label="Время появления главного экрана на телефоне: ДомХит 16,6 с, Босфор 13,9 с, ИЛИОН 10,4 с, Золотой ключик 8,1 с, Этажи 5,9 с">
+    <h3>Через сколько секунд на телефоне появляется главный экран</h3>
+    <div class="bar"><span>Этажи</span><span class="track"><i style="width:24%"></i><em>5,9 с</em></span></div>
+    <div class="bar"><span>Золотой ключик</span><span class="track"><i style="width:33%"></i><em>8,1 с</em></span></div>
+    <div class="bar"><span>ИЛИОН</span><span class="track"><i style="width:43%"></i><em>10,4 с</em></span></div>
+    <div class="bar"><span>Босфор</span><span class="track"><i style="width:57%"></i><em>13,9 с</em></span></div>
+    <div class="bar me"><span>ДомХит</span><span class="track"><i style="width:69%"></i><em>16,6 с</em></span></div>
+    <span class="axis-note">Замер Google Lighthouse, эмуляция телефона на мобильной сети, 22.10.2026. Цель для нового сайта: меньше 3 секунд.</span>
+  </div>
+</section>
+
+<!-- КОНЦЕПТ -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">Концепт нового сайта</span><h2>Что меняем на главной и зачем</h2><p>Главную спроектировали под тех, кто реально покупает у ДомХит: переезжающих с материка, инвесторов и местные семьи.</p></div>
+
+  <div class="feat">
+    <div class="shot"><img src="kp-img/01-hero.jpg" alt="Новый первый экран: видео моря, заголовок и поиск" loading="lazy"></div>
+    <div class="feat-copy">
+      <span class="tag">Первый экран</span>
+      <h3>Продаёт жизнь у моря и сразу ведёт к поиску</h3>
+      <ul>
+        <li>Видео моря и побережья создаёт настроение, весит 2 МБ вместо 24 МБ</li>
+        <li>Поиск по типу, городу, комнатам и бюджету виден без прокрутки</li>
+        <li>«100+ специалистов на связи» и быстрые фильтры «У моря», «С ипотекой»</li>
+      </ul>
+      <p class="fix"><b>Решает:</b> тяжёлую главную и поиск на 5-м экране.</p>
+    </div>
+  </div>
+
+  <div class="feat rev">
+    <div class="shot"><img src="kp-img/02-lead.jpg" alt="Короткая форма заявки: имя, телефон и способ связи" loading="lazy"></div>
+    <div class="feat-copy">
+      <span class="tag">Короткая заявка</span>
+      <h3>Для тех, кто готов говорить сразу</h3>
+      <ul>
+        <li>Кнопки «Подобрать объект» открывают форму из двух полей: имя и телефон</li>
+        <li>Клиент сам выбирает, куда ему писать: WhatsApp, Telegram или звонок</li>
+        <li>Заявки из акции, ипотеки и видеопоказа приходят с пометкой, откуда они</li>
+      </ul>
+      <p class="fix"><b>Решает:</b> сейчас заявка — это форма из четырёх полей с капчей.</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="shot"><img src="kp-img/02-quiz.jpg" alt="Квиз подбора на странице: шаг выбора города" loading="lazy"></div>
+    <div class="feat-copy wide-copy">
+      <div><span class="tag">Квиз подбора</span><h3>Для тех, кто ещё не решил, что выбрать</h3></div>
+      <ul>
+        <li>Блок стоит после каталога: посмотрел объекты, не нашёл подходящий — ответил на 4 вопроса</li>
+        <li>Что ищет, где, бюджет, как будет платить</li>
+        <li>Специалист получает готовый запрос и пишет уже с вариантами</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="feat">
+    <div class="shot"><img src="kp-img/03-promo.jpg" alt="Баннер спецпредложения про материнский капитал" loading="lazy"></div>
+    <div class="feat-copy">
+      <span class="tag">Спецпредложение</span>
+      <h3>Место для главной новости агентства</h3>
+      <ul>
+        <li>Акции под конкретную аудиторию: маткапитал, семейная ипотека, новые ЖК</li>
+        <li>Фирменный стиль: цвета и знак ДомХит</li>
+        <li>Ведёт сразу на условия и заявку</li>
+      </ul>
+      <p class="fix"><b>Решает:</b> сейчас предложениям агентства негде появиться на главной.</p>
+    </div>
+  </div>
+
+  <div class="feat rev">
+    <div class="shot"><img src="kp-img/04-objects.jpg" alt="Новые карточки объектов с ценой и местом" loading="lazy"></div>
+    <div class="feat-copy">
+      <span class="tag">Карточки объектов</span>
+      <h3>Понятно за 5 секунд: что, где и за сколько</h3>
+      <ul>
+        <li>Человеческое название вместо кода «V18742 Продам квартиру»</li>
+        <li>Город, цена за м², специалист и кнопка видеопоказа</li>
+        <li>Фильтр и избранное прямо на главной</li>
+      </ul>
+      <p class="fix"><b>Решает:</b> сейчас в карточке не указано, где находится объект.</p>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="mini">
+      <div class="shot"><img src="kp-img/06-remote.jpg" alt="Блок для покупателей из других регионов" loading="lazy"></div>
+      <div class="feat-copy">
+        <span class="tag">Покупка из другого города</span>
+        <h3>Отдельный путь для главного сегмента</h3>
+        <ul><li>Видеопоказ, проверка документов, одна поездка на сделку</li></ul>
+      </div>
+    </div>
+    <div class="mini">
+      <div class="shot"><img src="kp-img/05-mortgage.jpg" alt="Ипотечный калькулятор" loading="lazy"></div>
+      <div class="feat-copy">
+        <span class="tag">Ипотека</span>
+        <h3>Платёж в месяц за 10 секунд</h3>
+        <ul><li>Семейная, военная, рыночная. Кнопка «Узнать свои условия» вместо «Получить одобрение»</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat">
+    <div class="shot"><img src="kp-img/07-reviews.jpg" alt="Отзывы клиентов" loading="lazy"></div>
+    <div class="feat-copy">
+      <span class="tag">Доверие</span>
+      <h3>Реальные отзывы на главной</h3>
+      <ul>
+        <li>Сейчас отзывы спрятаны на отдельной странице</li>
+        <li>Тип сделки и дата у каждого отзыва</li>
+        <li>Дальше подключим отзывы из Яндекс Карт и 2ГИС</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="phone">
+    <div class="shot"><img src="kp-img/08-mobile.jpg" alt="Главная на телефоне" loading="lazy"></div>
+    <div class="feat-copy">
+      <span class="tag">Телефон в первую очередь</span>
+      <h3>Удобно с телефона, откуда чаще всего и ищут жильё</h3>
+      <ul>
+        <li>Поиск начинается на первом экране, а не на пятом</li>
+        <li>Внизу всегда закреплены «Звонок», «WhatsApp» и «Подобрать»</li>
+        <li>Можно увеличивать фото пальцами, кнопки удобного размера</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- КАК РАБОТАЕМ -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">Как работаем</span><h2>Три этапа без остановки сайта</h2><p>Работаем на вашем хостинге и домене. Сначала делаем резервную копию, все правки проверяем на закрытой тестовой версии.</p></div>
+  <div class="steps">
+    <div class="step main"><span class="n">Этап 1</span><h3>Исправить критичное</h3><ul><li>Убрать показ кода и битые ссылки</li><li>Новая карта сайта, склейка дублей</li><li>Ускорить главную</li><li>Цели в Метрике: звонки, WhatsApp, заявки</li></ul></div>
+    <div class="step"><span class="n">Этап 2</span><h3>Редизайн</h3><ul><li>Главная по этому концепту</li><li>Каталог и карточка объекта</li><li>Квиз и мобильная версия</li><li>Внедрение по одной странице</li></ul></div>
+    <div class="step"><span class="n">Этап 3</span><h3>Рост из поиска</h3><ul><li>Страницы под ЖК, посёлки и районы</li><li>Статьи для покупателей</li><li>Карточки офисов в Картах и 2ГИС</li><li>Ежемесячный отчёт по заявкам</li></ul></div>
+  </div>
+  <div class="start">
+    <div><h3>Что нужно для старта</h3><p>Стоимость и формат обсудим на созвоне, после того как посмотрим данные Метрики.</p></div>
+    <div class="chips"><span>Доступ к хостингу</span><span>Яндекс Метрика</span><span>Яндекс Вебмастер</span><span>Контакт для согласований</span></div>
+  </div>
+</section>
+
+<footer>
+  <span>В концепте видео на первом экране стоковое, условия акции и часть текстов приведены как пример. Перед запуском заменим их на материалы ДомХит.</span>
+  <span>Замеры: Google Lighthouse и ручная проверка сайта и выдачи, 22.10.2026.</span>
+</footer>
+
+</div>
+
+</body>
+</html>
