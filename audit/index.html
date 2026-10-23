@@ -112,8 +112,31 @@ h2{font-weight:300;font-size:clamp(28px,3.4vw,44px);line-height:1.06;letter-spac
 .start .chips{display:flex;flex-wrap:wrap;gap:8px}
 .start .chips span{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 14px;font-size:14px}
 @media (max-width:820px){.start{grid-template-columns:1fr}}
+.tbl{overflow-x:auto;background:var(--surface);border-radius:20px}
+.tbl table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+.tbl th,.tbl td{text-align:left;padding:14px 24px;border-bottom:1px solid var(--line)}
+.tbl th{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{color:var(--muted)}
+.tbl td:last-child{font-weight:500}
+.ads{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;background:var(--surface);border-radius:20px;padding:28px}
+.ads .tag{display:inline-flex;background:var(--orange-soft);color:var(--orange-deep);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:500;margin-bottom:12px}
+.ads h3{font-weight:300;font-size:clamp(22px,2.2vw,28px);letter-spacing:-.025em;margin-bottom:10px}
+.ads p{color:var(--muted);font-size:15px}
+.timeline{display:grid;gap:12px;border-left:2px solid var(--line);padding-left:20px}
+.timeline div{position:relative;display:grid;gap:2px}
+.timeline div::before{content:"";position:absolute;left:-27px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--orange)}
+.timeline b{font-weight:500;font-size:14px;color:var(--orange-deep)}
+.timeline span{font-size:14px}
+@media (max-width:820px){.ads{grid-template-columns:1fr}}
 .site-link{justify-self:start;display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--ink);text-decoration:none;border-radius:999px;height:52px;padding:0 8px 0 24px;font-weight:500;font-size:15px}
 .site-link .arr{width:36px;height:36px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:16px}
+.site-link.dark{background:var(--orange);color:#fff}
+.site-link.dark .arr{background:#fff;color:var(--orange-deep)}
+.end{background:var(--ink);color:#fff;border-radius:28px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
+.end h2{color:#fff}
+.end p{color:rgba(255,255,255,.7);margin-top:10px;max-width:34em}
+@media (max-width:820px){.end{grid-template-columns:1fr}}
 footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:grid;gap:4px}
 
 /* печать и PDF: альбомные страницы, блоки не разрываются */
@@ -143,7 +166,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
   <span class="eyebrow">domhit.pro</span>
   <h1>Сайт, который <em>приводит</em> клиентов, а не теряет их</h1>
   <p class="lead">У ДомХит одна из крупнейших баз в Крыму: почти 4 000 объектов и 5 офисов. Сайт этого не показывает: он медленный, в нём есть технические ошибки, и с телефона до поиска нужно долго листать.</p>
-  <a class="site-link" href="../">Открыть концепт сайта<span class="arr">→</span></a>
+  <a class="site-link" href="https://olaankova31-byte.github.io/domhit-preview-311d1e/" target="_blank" rel="noopener">Открыть концепт сайта<span class="arr">→</span></a>
   <div class="kpis">
     <div class="kpi"><b class="bad num">16,6 с</b><span>появляется главный экран на телефоне. Норма до 2,5 с</span></div>
     <div class="kpi"><b class="bad num">5 экранов</b><span>нужно пролистать на телефоне до поиска объектов</span></div>
@@ -153,14 +176,17 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
 
 <!-- ЧТО НЕ РАБОТАЕТ -->
 <section class="sec">
-  <div class="sec-head"><span class="eyebrow">Что сейчас не работает</span><h2>Шесть проблем, из-за которых сайт теряет заявки</h2></div>
+  <div class="sec-head"><span class="eyebrow">Что сейчас не работает</span><h2>Девять проблем, из-за которых сайт теряет заявки</h2></div>
   <div class="problems">
     <div class="pr"><b class="num">16 МБ</b><h3>Тяжёлая главная</h3><p>11,7 МБ из них занимает фоновое видео. На мобильном интернете часть людей уходит, не дождавшись.</p></div>
     <div class="pr"><b>Нет поиска</b><h3>на первом экране телефона</h3><p>Сначала слоган и кнопки услуг, каталог только на 6-м экране. Поиска нет даже в меню.</p></div>
     <div class="pr"><b>404</b><h3>«Евпатория» в меню ведёт на ошибку</h3><p>Главный город агентства открывается пустой страницей.</p></div>
     <div class="pr"><b>Код</b><h3>Ошибки показывают внутренности сайта</h3><p>Включён режим отладки: код и путь к файлам на сервере видны всем. Это риск безопасности.</p></div>
     <div class="pr"><b class="num">3 840</b><h3>устаревших адресов в карте сайта</h3><p>Яндекс тратит время на переадресации, и новые объекты медленнее попадают в поиск.</p></div>
-    <div class="pr"><b>0</b><h3>статей и посадочных страниц</h3><p>По запросам «квартира в Евпатории», «участок ИЖС» первые места у агрегаторов, сайта ДомХит там нет.</p></div>
+    <div class="pr"><b>0</b><h3>статей, а страницы городов пустые</h3><p>40 страниц городов и 11 ЖК почти без текста и с одинаковым описанием. По запросам «квартира в Евпатории», «участок ИЖС» первые места у агрегаторов.</p></div>
+    <div class="pr"><b>«Пpoдам»</b><h3>Объявления плохо находятся в поиске</h3><p>В описаниях «редактирую» или пусто, слова набраны латиницей вперемешку с кириллицей. Поиск их не распознаёт.</p></div>
+    <div class="pr"><b>2 сайта</b><h3>Дубли страниц</h3><p>Сайт открывается и с www, и без него, есть другие копии страниц. Поисковик не понимает, какую показывать.</p></div>
+    <div class="pr"><b>?</b><h3>Непонятно, сколько заявок даёт сайт</h3><p>Метрика стоит, но без настроенных целей нельзя посчитать звонки и заявки, а значит и понять, окупается ли сайт.</p></div>
   </div>
   <div class="compare" role="img" aria-label="Время появления главного экрана на телефоне: ДомХит 16,6 с, Босфор 13,9 с, ИЛИОН 10,4 с, Золотой ключик 8,1 с, Этажи 5,9 с">
     <h3>Через сколько секунд на телефоне появляется главный экран</h3>
@@ -291,6 +317,40 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
   </div>
 </section>
 
+<!-- ОРГАНИЧЕСКИЙ РОСТ -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">Клиенты из поиска</span><h2>Как сайт начнёт приводить клиентов сам</h2><p>Люди ищут не «агентство недвижимости», а конкретное. На каждый такой запрос нужна своя страница, где сразу то, что человек искал.</p></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Человек ищет в Яндексе</th><th>Куда попадает</th></tr></thead>
+      <tbody>
+        <tr><td>квартира у моря в Евпатории</td><td>Страница «Квартиры у моря, Евпатория»</td></tr>
+        <tr><td>участок ИЖС Саки</td><td>«Участки ИЖС в Саках и районе»</td></tr>
+        <tr><td>ЖК Мойнако цены</td><td>Страница ЖК с ценами и планировками</td></tr>
+        <tr><td>купить квартиру в Крыму с маткапиталом</td><td>«Покупка с материнским капиталом»</td></tr>
+        <tr><td>как купить квартиру в Крыму удалённо</td><td>Статья, а из неё в подбор и квиз</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="n">Посадочные страницы</span><h3>40 городов и 11 ЖК начнут работать</h3><ul><li>Свой текст, заголовки и цены на каждой</li><li>Новые страницы: «у моря», «с ипотекой», «ИЖС»</li><li>Посёлки: Исмаил-Бей, Уютное, Николаевка</li></ul></div>
+    <div class="step"><span class="n">Статьи</span><h3>Ответы на вопросы покупателей</h3><ul><li>Документы, районы, ИЖС или СНТ, ипотека</li><li>Для тех, кто переезжает с материка</li><li>Каждая статья ведёт к объектам или в квиз</li></ul></div>
+    <div class="step"><span class="n">Карты</span><h3>5 офисов в Яндекс Картах и 2ГИС</h3><ul><li>Карточки с фото, графиком и отзывами</li><li>По запросу «агентство Евпатория» часто выбирают прямо на карте</li></ul></div>
+  </div>
+  <div class="ads">
+    <div>
+      <span class="tag">Реклама</span>
+      <h3>Яндекс Директ подключаем после редизайна</h3>
+      <p>Реклама на нынешний сайт сливает бюджет: человек платно приходит и уходит, не дождавшись 16 секунд загрузки. После редизайна у каждой кампании будет своя готовая страница (ЖК, маткапитал, ипотека), а короткая форма и квиз покажут, сколько стоит одна заявка.</p>
+    </div>
+    <div class="timeline">
+      <div><b>Месяц 1</b><span>Ошибки исправлены, заявки считаются в Метрике</span></div>
+      <div><b>Месяцы 2–3</b><span>Новые страницы в поиске, первые показы по узким запросам</span></div>
+      <div><b>Месяцы 4–6</b><span>Заметный рост заявок из поиска. По желанию подключаем Директ</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- КАК РАБОТАЕМ -->
 <section class="sec">
   <div class="sec-head"><span class="eyebrow">Как работаем</span><h2>Три этапа без остановки сайта</h2><p>Работаем на вашем хостинге и домене. Сначала делаем резервную копию, все правки проверяем на закрытой тестовой версии.</p></div>
@@ -303,6 +363,11 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
     <div><h3>Что нужно для старта</h3><p>Стоимость и формат обсудим на созвоне, после того как посмотрим данные Метрики.</p></div>
     <div class="chips"><span>Доступ к хостингу</span><span>Яндекс Метрика</span><span>Яндекс Вебмастер</span><span>Контакт для согласований</span></div>
   </div>
+</section>
+
+<section class="end">
+  <div><h2>Посмотрите концепт вживую</h2><p>Главная работает как настоящий сайт: видео, поиск, квиз, ипотечный калькулятор и форма заявки. Откройте её с телефона, чтобы увидеть мобильную версию.</p></div>
+  <a class="site-link dark" href="https://olaankova31-byte.github.io/domhit-preview-311d1e/" target="_blank" rel="noopener">Открыть концепт сайта<span class="arr">→</span></a>
 </section>
 
 <footer>
